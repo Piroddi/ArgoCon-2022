@@ -30,3 +30,4 @@ override.tf.json
 .terraform.lock.hcl
 .terragrunt-cache
 .idea
+.DS_Store
