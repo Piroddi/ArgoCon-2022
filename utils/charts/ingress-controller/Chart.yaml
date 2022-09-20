@@ -1,0 +1,12 @@
+apiVersion: v2
+description: A Helm Chart to deploy aws ingress controller
+name: aws-ebs-csi-driver
+version: 0.0.1
+keywords:
+  - aws
+  - alb
+  - ingress
+dependencies:
+  - name: aws-load-balancer-controller
+    version: 1.4.1
+    repository: https://aws.github.io/eks-charts

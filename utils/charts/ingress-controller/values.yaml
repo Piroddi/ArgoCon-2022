@@ -1,0 +1,10 @@
+aws-load-balancer-controller:
+  serviceAccount:
+    create: true
+    automountServiceAccountToken: true
+    annotations:
+      eks.amazonaws.com/role-arn: "{ARN of ingress-controller IAM role - IRSA}"
+  serviceMonitor:
+    enabled: false
+  vpcId:  "{AWS VPC ID goes here}"
+  clusterName: "ArgoCon-2022"

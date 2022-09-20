@@ -1,0 +1,7 @@
+apiVersion: v2
+description: A Helm Chart for to deploy a service using ArgoCD
+name: ArgoCD-cluster-configs
+version: 0.0.1
+keywords:
+  - service
+  - ArgoCD

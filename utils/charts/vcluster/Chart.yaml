@@ -1,0 +1,10 @@
+apiVersion: v2
+description: A Helm Chart for to deploy a vcluster
+name: external-dns
+version: 0.0.1
+keywords:
+  - vcluster
+dependencies:
+  - name: vcluster
+    version: 0.11.2
+    repository: https://charts.loft.sh

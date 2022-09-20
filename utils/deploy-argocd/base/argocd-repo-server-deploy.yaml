@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+spec:
+  replicas: 3
+  template:
+    spec:
+      serviceAccountName: argocd-repo-server
+      securityContext:
+        fsGroup: 999
+      containers:
+      - name: argocd-repo-server
+        securityContext:
+          readOnlyRootFilesystem: false

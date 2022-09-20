@@ -1,0 +1,21 @@
+external-dns:
+  provider: aws
+  source:
+    - service
+    - ingress
+  domainFilters:
+    - "{You root domain goes here}"
+
+  image:
+    repository: k8s.gcr.io/external-dns/external-dns
+    tag: v0.12.0
+    pullPolicy: IfNotPresent
+
+  serviceAccount:
+    create: true
+    annotations:
+      eks.amazonaws.com/role-arn: "{ARN of external-dns IAM role - IRSA}"
+    automountServiceAccountToken: true
+
+  serviceMonitor:
+    enabled: false

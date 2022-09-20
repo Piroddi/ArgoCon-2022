@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name:  clusters
+  namespace: argocd
+spec:
+  description: Project for all vcluster
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+    - https://github.com/Piroddi/ArgoCon-2022.git
+  # Only permit applications to deploy to the argocd namespace in the same cluster
+  destinations:
+    - namespace: vcluster
+      server: https://kubernetes.default.svc
+  # Allow the following cluster-scoped resources
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  # Allow all namespaced-scoped resources to be created
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  # Enables namespace orphaned resource monitoring.
+  orphanedResources:
+    warn: false

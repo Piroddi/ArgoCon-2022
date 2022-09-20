@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  admin.enabled: "true"
+  exec.enabled: "true"
+  application.resourceTrackingMethod: annotation
+  accounts.kelvin: apiKey, login
+  accounts.luke: apiKey, login
+  ui.bannercontent: "Creating a Scalable Foundation for Kubernetes Multi-Tenancy (ArgoCon-2022)"
+  ui.bannerurl: "https://sched.co/14lwe"

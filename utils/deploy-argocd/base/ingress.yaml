@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/load-balancer-name: argocd
+    alb.ingress.kubernetes.io/backend-protocol: HTTPS
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:816070112642:certificate/95917bd0-8bb4-45c4-bcc6-5b307d53dfed
+    external-dns.alpha.kubernetes.io/hostname: argocd.piroddi.link
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+  name: argocd
+  namespace: argocd
+spec:
+  rules:
+    - host: argocd.piroddi.link
+      http:
+        paths:
+          - path: /
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
+            pathType: Prefix
+  tls:
+    - hosts:
+        - argocd.piroddi.link

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name:  "app-{{ .Values.cluster_name }}"
+  namespace: argocd
+spec:
+  project: {{ .Values.project_name }}
+  source:
+    repoURL: 'https://github.com/Piroddi/ArgoCon-2022.git'
+    path: utils/charts/service
+    targetRevision: develop
+    helm:
+      releaseName: {{ .Release.Name }}
+  destination:
+    server: 'https://{{ .Values.cluster_name }}.vcluster'
+    namespace: {{ .Release.Name }}
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

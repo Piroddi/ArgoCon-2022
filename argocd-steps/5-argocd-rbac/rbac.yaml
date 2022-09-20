@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+data:
+  policy.csv: |
+    # Team A permissions 
+    p, role:team-a, projects, get, project-a, allow
+    p, role:team-a, applications, *, project-a/*, allow
+    p, role:team-a, clusters, get, *, allow
+
+    # Team B permissions
+    p, role:team-b, projects, get, project-b, allow
+    p, role:team-b, applications, *, project-b/*, allow
+    p, role:team-b, clusters, get, *, allow
+
+    # Map users to tema roles
+    g, kelvin, role:team-a    
+    g, luke, role:team-b

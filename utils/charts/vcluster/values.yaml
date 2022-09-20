@@ -1,0 +1,32 @@
+vcluster:
+  storage:
+    persistence: false
+  init:
+    manifests: |-
+      ---
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: argocd-admin
+        namespace: default
+      ---
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRoleBinding
+      metadata:
+        name: argocd-admin-binding
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: cluster-admin
+      subjects:
+      - kind: ServiceAccount
+        name: argocd-admin
+        namespace: default
+      ---
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: argocd-admin-token
+        annotations:
+          kubernetes.io/service-account.name: argocd-admin
+      type: kubernetes.io/service-account-token

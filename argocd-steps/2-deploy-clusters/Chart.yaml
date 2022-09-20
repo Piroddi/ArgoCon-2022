@@ -1,0 +1,7 @@
+apiVersion: v2
+description: A Helm Chart to deploy a vcluster onto ArgoCD
+name: ArgoCD-vcluster-app
+version: 0.0.1
+keywords:
+  - vcluster
+  - ArgoCD

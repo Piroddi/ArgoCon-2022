@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Release.Name }}
+  namespace: argocd
+spec:
+  description: Project containng all apps for {{ .Values.team }}, deployed on {{ .Values.cluster_name }}
+  sourceRepos:
+    - https://github.com/Piroddi/ArgoCon-2022.git
+  destinations:
+    - namespace: {{ .Values.app_namespace }}
+      server: https://{{ .Values.cluster_name }}.vcluster
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'

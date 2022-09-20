@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Piroddi/ArgoCon-2022.git'
+    path: utils/charts/external-dns
+    targetRevision: develop
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: aws-controllers

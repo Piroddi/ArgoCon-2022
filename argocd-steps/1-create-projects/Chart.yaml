@@ -1,0 +1,6 @@
+apiVersion: v2
+description: A Helm Chart to create ArgoCD projects
+name: ArgoCD-projects
+version: 0.0.1
+keywords:
+  - ArgoCD

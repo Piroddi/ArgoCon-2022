@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}
+  namespace: argocd
+spec:
+  project: clusters
+  source:
+    repoURL: 'https://github.com/Piroddi/ArgoCon-2022.git'
+    path: utils/charts/vcluster
+    targetRevision: develop
+    helm:
+      releaseName: {{ .Release.Name }}
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: vcluster
+  syncPolicy:
+    automated:
+      prune: true
